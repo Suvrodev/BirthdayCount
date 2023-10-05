@@ -1,0 +1,25 @@
+.birthdayContainder{
+    display: flex;
+}
+.birthdayContainderLeft{
+    width: 80%;
+    background-color: green;
+}
+.birthdayContainderRight{
+    width: 20%;
+    background-color: red;
+}
+
+@media only screen and (max-width: 576px) {
+    .birthdayContainder{
+        flex-direction: column-reverse;
+    }
+    .birthdayContainderRight{
+        width: 90%;
+        margin: auto;
+    }
+    .birthdayContainderLeft{
+        width: 90%;
+        margin: 10px auto;
+    }
+}

@@ -1,0 +1,37 @@
+.mainCard{
+    background-color: gray;
+    height: 145px;
+    margin: 15px;
+    display: flex;
+    border-radius: 25px;
+}
+.cardImage{
+    width: 30%;
+    /* background-color: pink; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cardImage img{
+    width: 95%;
+    height: 95%;
+}
+.midPortionCard{
+    width: 65%;
+    background-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.rightPortionOfCard{
+    background-color: crimson;
+    width: 5%;
+}
+.rightPortionOfCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}

@@ -8,7 +8,8 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/UserActivity/Login/Login";
 import SignUp from "../Pages/UserActivity/SignUp/SignUp";
 import AddFriend from "../Pages/Birthday/AddFriend/AddFriend";
-import AllFrind from "../Pages/Birthday/AllFriend/AllFrind";
+import AllFriends from "../Pages/Birthday/AllFriend/AllFriend/AllFriends";
+import Update from "../Pages/Birthday/Update/Update";
 
 
 const router = createBrowserRouter([
@@ -38,7 +39,11 @@ const router = createBrowserRouter([
         },
         {
             path: '/birthday',
-            element: <AllFrind></AllFrind>
+            element: <AllFriends></AllFriends>
+        },
+        {
+            path: '/birthday/:id',
+            element: <Update></Update>
         }
     ]
 },
