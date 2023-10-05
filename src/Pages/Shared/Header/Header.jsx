@@ -10,8 +10,8 @@ const Header = () => {
 
     const navItems=<div className='lg:flex items-center justify-center'>
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/home'>Home</NavLink ></li>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/about'>Birthday</NavLink ></li>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/career'>Add Friend</NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/birthday'>Birthday</NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/addfriend'>Add Friend</NavLink ></li>
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/about'>About</NavLink ></li>
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/career'>Feedback</NavLink ></li>
     </div>
@@ -43,7 +43,7 @@ const Header = () => {
 
            {/* Logo and Website Name Start */}
             <img className='logoImage' src={logo} alt="" />
-            <h1 className='text-xl md:text-2xl font-bold '>Birthday</h1>
+            <h1 className='text-xl md:text-2xl font-bold text-white'>Birthday</h1>
             {/* Logo and Website Name End */}
 
         </div>
