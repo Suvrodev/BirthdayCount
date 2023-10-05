@@ -44,22 +44,16 @@ const AuthProvider = ({children}) => {
     ///Sign Out End
 
 
-    ///Check Logged User start
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
+     // Check User start
+     useEffect(()=>{
+        const unSubscribe=onAuthStateChanged(auth,(currentUser)=>{
             console.log("Current User: ",currentUser);
-            setUser(currentUser)
             setLoading(false)
-            
+            setUser(currentUser)
         })
-        return ()=> unsubscribe()
-    //    return ()=>{
-    //        return unsubscribe();
-    //     }
-
-        
+        return ()=> unSubscribe()
     },[])
-    ///Check Logged User end
+    // Check User End
 
 
 
@@ -93,7 +87,8 @@ const AuthProvider = ({children}) => {
         loginByEmailPassword,
         Logout_,
         successfullToast,
-        unSuccessfullToast
+        unSuccessfullToast,
+        loading,
 
 
     }

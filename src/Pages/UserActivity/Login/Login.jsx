@@ -1,10 +1,15 @@
 import React, { useContext, useState } from 'react';
 import './Login.css'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa6';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Login = () => {
+
+    const location=useLocation()
+    // console.log("Login Location: ",location);
+    const target=location?.state?.from || '/';
+    // console.log("Target: ",target);
 
     const navigate=useNavigate()
     const {user,signInByGoogle,successfullToast,unSuccessfullToast,loginByEmailPassword}=useContext(AuthContext)
@@ -20,6 +25,7 @@ const Login = () => {
         .then(result=>{
             const loggedUser=result.user;
             console.log("Google User: ",loggedUser);
+            navigate(target,true)
         })
         .catch(error=>{
             console.log("Google Error: ",error.message);
@@ -37,7 +43,7 @@ const Login = () => {
             const loggedUser=result.user;
             console.log("Login User: ",loggedUser);
             successfullToast("Login Successfuly")
-            navigate('/')
+            navigate(target)
         })
         .catch(error=>{
             unSuccessfullToast("Email or Password not Matched")

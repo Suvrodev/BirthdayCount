@@ -1,7 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { AuthContext } from '../../../Provider/AuthProvider';
+
+const imageHosting_Token=import.meta.env.VITE_IMAGE_TOKEN
 
 const Update = () => {
+
+    //console.log("Token: ",imageHosting_Token);
+    const imageHostingUrl=`https://api.imgbb.com/1/upload?key=${imageHosting_Token}`
+    //console.log("URL: ",imageHostingUrl);
+
+    const {user,successfullToast,unSuccessfullToast}=useContext(AuthContext)
     const {id}=useParams()
     const [friend,setfriend]=useState("")
     useEffect(()=>{
@@ -14,6 +23,74 @@ const Update = () => {
 
     const handleUpdate=(event)=>{
         event.preventDefault()
+        const form=event.target;
+
+        const name=form.name.value;
+        const dob=form.date.value;
+        const photo=form.photo.files[0];
+        const ratting=form.ratting.value;
+        const phone=form.phone.value;
+        const location=form.location.value;
+        let people;
+        
+        ///didn't upload new photo
+        if(!photo){
+            console.log("Didn't Uploaded New Photo");
+            people={name,dob,ratting:parseInt(ratting),phone,location,ref:user?.email,image}
+            console.log("People: ",people);
+
+            fetch(`http://localhost:7000/bd/${_id}`,{
+                method: 'PATCH',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body: JSON.stringify(people)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.modifiedCount>0){
+                    successfullToast('Updated Successfully')
+                }
+            })
+        }else{
+            console.log("New Photo Uploaded");
+            const formData=new FormData()
+            formData.append('image',photo)
+
+            fetch(imageHostingUrl,{
+                method: 'POST',
+                body: formData
+            })
+            .then(res=>res.json())
+            .then(imageResponse=>{
+                let newImage=imageResponse.data.display_url
+                console.log("Update Image Link Okay: ",image);
+
+                people={name,dob,ratting:parseInt(ratting),phone,location,ref:user?.email,image:newImage}
+                console.log("People: ",people);
+    
+
+                ////Patch Data start
+                fetch(`http://localhost:7000/bd/${_id}`,{
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(people)
+                    
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(data)
+                    if(data.modifiedCount>0){
+                        successfullToast("Successfully Updated")
+                    }
+                })
+                ////Patch Data end
+                
+            })
+        }
+
     }
     return (
         <div>
@@ -55,7 +132,6 @@ const Update = () => {
                         name="photo"
                         placeholder="Image"
                         className="file-input file-input-bordered w-full "
-                        required
                         />
                     </div>
                     <div className="form-control">

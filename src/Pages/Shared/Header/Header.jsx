@@ -9,11 +9,16 @@ const Header = () => {
     const {user,Logout_,successfullToast}=useContext(AuthContext)
 
     const navItems=<div className='lg:flex items-center justify-center'>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/home'>Home</NavLink ></li>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/birthday'>Birthday</NavLink ></li>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/addfriend'>Add Friend</NavLink ></li>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/about'>About</NavLink ></li>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/career'>Feedback</NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/home'>Home</NavLink ></li>
+    {
+      user && 
+      <>
+          <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/birthday'>Birthday</NavLink ></li>
+          <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/addfriend'>Add Friend</NavLink ></li>
+      </>
+    }
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/about'>About</NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/feedback'>Feedback</NavLink ></li>
     </div>
     return (
         <div className="navbar  h-28 mb-4 text-black ">
