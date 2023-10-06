@@ -4,6 +4,7 @@ import SingleFriend from '../SingleFriend/SingleFriend';
 import { AuthContext } from '../../../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import Remaining from '../RIghtRemaining/Remaining/Remaining';
 
 const AllFriends = () => {
 
@@ -122,7 +123,10 @@ const AllFriends = () => {
                         }
                     </div>
                     <div className='birthdayContainderRight'>
-                        <h1>Right Side</h1> 
+                        <h1 className='bg-green-500 p-2 text-center text-white font-bold rounded-md'>Remaining Days</h1> 
+                        <div>
+                            <Remaining></Remaining>
+                        </div>
                     </div>
                 </div>
                  {/* Main Work End */}
