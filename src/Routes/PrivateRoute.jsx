@@ -7,7 +7,7 @@ const PrivateRoute = ({children}) => {
 
     const location=useLocation()
     const path=location.pathname;
-    console.log("Path Private:",path);
+    // console.log("Path Private:",path);
     if(loading){
         return <div>
             <span className="loading loading-spinner text-primary"></span>
