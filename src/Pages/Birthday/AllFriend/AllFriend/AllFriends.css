@@ -4,7 +4,7 @@
 }
 .birthdayContainderLeft{
     width: 70%;
-    background-color: green;
+    /* background-color: green; */
     border-radius: 10px;
     padding: 10px;
 }
@@ -29,9 +29,10 @@
     .birthdayContainderRight{
         width: 90%;
         margin: auto;
+        position: static;
     }
     .birthdayContainderLeft{
-        width: 90%;
-        margin: 10px auto;
+        width: 100%;
+      
     }
 }

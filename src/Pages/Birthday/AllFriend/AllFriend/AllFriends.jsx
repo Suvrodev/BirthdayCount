@@ -40,7 +40,7 @@ const AllFriends = () => {
 
     
     useEffect(()=>{
-        fetch(`http://localhost:7000/bd?email=${user?.email}&sort=${sort}&search=${search}`)
+        fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd?email=${user?.email}&sort=${sort}&search=${search}`)
         .then(res=>res.json())
         .then(data=>setFriends(data))
     },[check,sort,search])
@@ -59,7 +59,7 @@ const AllFriends = () => {
           }).then((result) => {
             if (result.isConfirmed) {
               ///Delete Start
-              fetch(`http://localhost:7000/bd/${_id}`,{
+              fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd/${_id}`,{
                 method: 'DELETE'
             })
             .then(res=>res.json())

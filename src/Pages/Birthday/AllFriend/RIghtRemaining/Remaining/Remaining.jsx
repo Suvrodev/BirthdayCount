@@ -20,7 +20,7 @@ const Remaining = () => {
     const [newPeoples,setNewPeoples]=useState([])
 
     useEffect(()=>{
-        fetch(`http://localhost:7000/bd?email=${user?.email}`)
+        fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             // console.log("Data: ",data);
@@ -45,10 +45,13 @@ const Remaining = () => {
         }
 
         // Calculate the number of days until the next birthday
-        const daysUntilNextBirthday = Math.ceil((nextBirthday - currentDate) / (1000 * 60 * 60 * 24));
+        let daysUntilNextBirthday = Math.ceil((nextBirthday - currentDate) / (1000 * 60 * 60 * 24));
 
         ///console.log(`Your next birthday is ${daysUntilNextBirthday} days away.`);
         ////Calculation end
+        if(daysUntilNextBirthday==366){
+            daysUntilNextBirthday=0
+        }
         peoples[i].remaining=daysUntilNextBirthday
     }
 

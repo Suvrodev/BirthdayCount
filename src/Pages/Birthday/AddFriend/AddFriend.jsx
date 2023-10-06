@@ -43,7 +43,7 @@ const AddFriend = () => {
 
                 people.image=image
                 ////Post Data start
-                fetch(`http://localhost:7000/bd`,{
+                fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd`,{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
