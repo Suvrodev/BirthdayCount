@@ -1,0 +1,21 @@
+.chart{
+    display: flex;
+    justify-content: center;
+
+}
+
+.XAxis{
+    font-weight: 700;
+    color: green !important;
+    font-size: 12px;
+}
+.YAxis{
+    font-weight: 700;
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 576px) {
+    .ComposedChart{
+        overflow: auto;
+    }
+}

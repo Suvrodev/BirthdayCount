@@ -1,0 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto&display=swap');
+
+.upper{
+    /* background-color: orangered; */
+}
+.headerTitle{
+   color: #35cf56;
+   font-size: 45px; 
+   text-align: center;
+   font-weight: 700;
+   font-family: 'Dancing Script';
+   text-transform: capitalize;
+}
