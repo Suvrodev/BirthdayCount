@@ -15,7 +15,7 @@ const Update = () => {
     const {id}=useParams()
     const [friend,setfriend]=useState("")
     useEffect(()=>{
-        fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd/${id}`)
+        fetch(`http://localhost:7000/bd/${id}`)
         .then(res=>res.json())
         .then(data=>setfriend(data))
     },[])
@@ -40,7 +40,7 @@ const Update = () => {
             people={name,dob,ratting:parseInt(ratting),phone,location,ref:user?.email,image}
             console.log("People: ",people);
 
-            fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd/${_id}`,{
+            fetch(`http://localhost:7000/bd/${_id}`,{
                 method: 'PATCH',
                 headers:{
                     'content-type':'application/json'
@@ -72,7 +72,7 @@ const Update = () => {
     
 
                 ////Patch Data start
-                fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd/${_id}`,{
+                fetch(`http://localhost:7000/bd/${_id}`,{
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'

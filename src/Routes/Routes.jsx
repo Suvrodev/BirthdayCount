@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import About from "../Pages/Admin/About/About";
 import Feedback from "../Pages/Admin/Feedback/Feedback";
 import ErrorElement from "../Pages/ErrorElement/ErrorElement";
+import Extra from "../Pages/Extra/Extra";
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
         {
             path: '/feedback',
             element: <Feedback></Feedback>
+        },
+        {
+            path: '/extra',
+            element: <Extra></Extra>
         }
     ]
 },

@@ -16,17 +16,25 @@ const AllFriends = () => {
     const [sort,setSort]=useState(0)
     const [search,setSearch]=useState("")
 
-    const handledefault=()=>{
-        console.log("Default");
-        setSort(0)
-    }
-    const handleAscending=()=>{
-        console.log("1-5");
-        setSort(1)
-    }
-    const handleDescending=()=>{
-        console.log("5-1");
-        setSort(-1)
+
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const handleSelectChange=(e)=>{
+        const selectedValue = e.target.value;
+        console.log("SelectedValue: ",selectedValue);
+        setSelectedOption(selectedValue)
+        if(selectedValue==""){
+            console.log("Default");
+            setSort(0)
+        }
+        if(selectedValue=="1"){
+            console.log("1-10");
+            setSort(1)
+        }
+        if(selectedValue=="-1"){
+            console.log("10-1");
+            setSort(-1)
+        }
     }
     
     const handleSearch=(event)=>{
@@ -36,12 +44,14 @@ const AllFriends = () => {
         console.log(search);
     }
 
+    
+
 
 
 
     
     useEffect(()=>{
-        fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd?email=${user?.email}&sort=${sort}&search=${search}`)
+        fetch(`http://localhost:7000/bd?email=${user?.email}&sort=${sort}&search=${search}`)
         .then(res=>res.json())
         .then(data=>setFriends(data))
     },[check,sort,search])
@@ -60,7 +70,7 @@ const AllFriends = () => {
           }).then((result) => {
             if (result.isConfirmed) {
               ///Delete Start
-              fetch(`https://birthday-count-server-hsliz7t8q-suvrodev.vercel.app/bd/${_id}`,{
+              fetch(`http://localhost:7000/bd/${_id}`,{
                 method: 'DELETE'
             })
             .then(res=>res.json())
@@ -95,9 +105,12 @@ const AllFriends = () => {
             {/* Main Work Start */}
 
             <div className='flex gap-5 my-2'>
-                <button onClick={handledefault} className={`btn btn-warning ${sort===0?'border-black':'border-0'}`}>Default</button>
-                <button onClick={handleAscending} className={`btn bg-green-600 text-white ${sort===1?'border-black':'border-0'}`}>A-Z</button>
-                <button onClick={handleDescending} className={`btn bg-orange-500 text-white ${sort===-1?'border-black':'border-0'} `}>Z-A</button>
+                <select onChange={handleSelectChange} value={selectedOption} className="p-2 rounded-md font-bold border-0 outline-0">
+                    <option value="" disabled>Select an option</option>
+                    <option value="">Default</option>
+                    <option value="1">Ascending(0-1) </option>
+                    <option value="-1">Descending(1-0) </option>
+                </select>
             </div>
 
              {/* Search Start */}
