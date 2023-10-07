@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import img from '../../../assets/Image/Image_.jpeg'
+import { Helmet } from 'react-helmet-async';
 
 
 const imageHosting_Token=import.meta.env.VITE_IMAGE_TOKEN
@@ -66,6 +67,9 @@ const AddFriend = () => {
    
     return (
         <div>
+            <Helmet>
+                 <title>Add Friend || Birthday</title>
+            </Helmet>
             <h1 className='w-4/12 bg-slate-500 p-4 text-center rounded-xl mx-auto font-bold'>Add Friend</h1>
         <form onSubmit={handleAddFriend} className="p-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

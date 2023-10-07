@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const imageHosting_Token=import.meta.env.VITE_IMAGE_TOKEN
 
@@ -94,6 +95,9 @@ const Update = () => {
     }
     return (
         <div>
+            <Helmet>
+                 <title>Update || Birthday</title>
+             </Helmet>
             <h1 className='w-4/12 bg-slate-500 p-4 text-center rounded-xl mx-auto font-bold'>Update Friend</h1>
             <img className='w-[155px] block mx-auto my-5 rounded-xl' src={image} alt="" />
             <form onSubmit={handleUpdate} className="p-10">

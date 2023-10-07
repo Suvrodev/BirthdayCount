@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const Feedback = () => {
     const {successfullToast}=useContext(AuthContext)
@@ -24,6 +25,10 @@ const Feedback = () => {
     
   return (
     <div>
+      <Helmet>
+                 <title>Feedback || Birthday</title>
+      </Helmet>
+
       <div className="border-white border-2 m-2 p-5 rounded-xl w-8/12 mx-auto">
         <h1 className="bg-orange-500 text-center p-2 w-full md:w-4/12 mx-auto font-bold rounded-md">Send Your Feedback</h1>
         <form ref={form} onSubmit={sendEmail}>

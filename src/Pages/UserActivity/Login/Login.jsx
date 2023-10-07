@@ -3,6 +3,7 @@ import './Login.css'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa6';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
 
@@ -50,7 +51,10 @@ const Login = () => {
         })
     }
     return (
-        <div className='bg-purple-300 border-black border-1 rounded-lg m-5 p-4'>  
+        <div className='bg-purple-300 border-black border-1 rounded-lg m-5 p-4'> 
+        <Helmet>
+                <title>Logim || Birthday</title>
+        </Helmet> 
                 <div className='hereForm  '>
                     
                    <form action="" onSubmit={handleLogin} className='w-[80%] mx-auto'>

@@ -5,6 +5,7 @@ import { AuthContext } from '../../../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import Remaining from '../RIghtRemaining/Remaining/Remaining';
+import { Helmet } from 'react-helmet-async';
 
 const AllFriends = () => {
 
@@ -77,7 +78,11 @@ const AllFriends = () => {
     }
 
     return (
+        
         <div className='bg-purple-500 w-[98%] mx-auto p-5 m-2 rounded-xl'>
+            <Helmet>
+                 <title>People List || Birthday</title>
+            </Helmet>
         <h1 className='bg-orange-500 w-4/12 mx-auto text-center p-2 mb-5 rounded-lg font-bold'>Your All Friend: {friends.length}</h1>
         {
             friends.length==0?
