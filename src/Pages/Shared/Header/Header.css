@@ -1,3 +1,9 @@
 .logoImage{
     width: 75px;
 }
+a{
+   color: var(--body_color);
+}
+.birthday{
+    color: var(--body_color);
+}

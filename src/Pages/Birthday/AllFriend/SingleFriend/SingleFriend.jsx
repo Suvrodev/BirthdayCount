@@ -29,7 +29,7 @@ const SingleFriend = ({friend,handleDelete}) => {
             </div>
 
             <div className='rightPortionOfCard'>
-                <button className='btn btn-group'> <Link to={`/birthday/${_id}`}><FaUser/></Link>  </button>
+                <Link to={`/birthday/${_id}`}><button className='btn btn-group'> <FaUser/></button></Link> 
                 <button className='btn btn-group bg-red-600 border-0' onClick={()=>handleDelete(_id)} > <FaTrash/> </button>
                
             </div>

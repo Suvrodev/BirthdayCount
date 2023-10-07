@@ -4,21 +4,22 @@ import { Link, NavLink } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa6';
 import logo from '../../../assets/logo/logo.png'
 import { AuthContext } from '../../../Provider/AuthProvider';
+import HeaderMode from './HeaderMode/HeaderMode';
 
 const Header = () => {
     const {user,Logout_,successfullToast}=useContext(AuthContext)
 
     const navItems=<div className='lg:flex items-center justify-center'>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/home'>Home</NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/home'>Home</NavLink ></li>
     {
       user && 
       <>
-          <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/birthday'>Birthday</NavLink ></li>
-          <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/addfriend'>Add Friend</NavLink ></li>
+          <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/birthday'>Birthday</NavLink ></li>
+          <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/addfriend'>Add Friend</NavLink ></li>
       </>
     }
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/about'>About</NavLink ></li>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':'text-white'}  to='/feedback'>Feedback</NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/about'>About</NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/feedback'>Feedback</NavLink ></li>
     </div>
     return (
         <div className="navbar  h-28 mb-4 text-black ">
@@ -48,7 +49,7 @@ const Header = () => {
 
            {/* Logo and Website Name Start */}
             <img className='logoImage' src={logo} alt="" />
-            <h1 className='text-xl md:text-2xl font-bold text-white'>Birthday</h1>
+            <h1 className='text-xl md:text-2xl font-bold birthday'>Birthday</h1>
             {/* Logo and Website Name End */}
 
         </div>
@@ -66,6 +67,7 @@ const Header = () => {
 
         {/* Right side of navbar Start */}
         <div className="navbar-end">
+        <HeaderMode></HeaderMode>
           {
             user?
             <>
@@ -73,13 +75,15 @@ const Header = () => {
                   user.photoURL &&
                  <img className='w-[35px] rounded-full mr-4' src={user?.photoURL} alt="" />
                 }
-                <button onClick={Logout_} className='btn btn-neutral text-white '> <Link to={'/'}> Logout </Link> </button>
+                {/* <button onClick={Logout_} className='btn btn-neutral text-white '> <Link to={'/'}> Logout </Link> </button> */}
+                <Link to={'/login'}>  <button onClick={Logout_} className='btn btn-neutral text-white '>Logout</button> </Link>
+                {/* <button onClick={Logout_} className='btn btn-neutral text-white '> <Link > Logout </Link> </button> */}
 
             </>
             :
             <div className='flex items-center '>
                 <p className='w-[35px] rounded-full '><FaUser className='' /></p>
-                <button className='btn btn-neutral text-white '> <Link to={'/login'}> Login </Link> </button>
+                <Link to={'/login'}> <button className='btn btn-neutral text-white '>  Login </button> </Link>
             </div>
           }
         </div>

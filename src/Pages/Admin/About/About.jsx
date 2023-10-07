@@ -13,7 +13,6 @@ import {
   Legend,
   Scatter,
 } from "recharts";
-
 const data = [
   {
     name: "HTML",
@@ -62,6 +61,9 @@ const data = [
 const About = () => {
   return (
     <div>
+       <div className="ms-10">
+        
+       </div>
       <div className="Marque flex gap-5 bg-orange-600 p-2 m-5 rounded-md">
         <button className="btn btn-error text-white">Update</button>
         <Marquee speed={100} autoFill={true}>
