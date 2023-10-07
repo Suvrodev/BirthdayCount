@@ -20,6 +20,7 @@ const Header = () => {
     }
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/about'>About</NavLink ></li>
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/feedback'>Feedback</NavLink ></li>
+    <HeaderMode></HeaderMode>
     </div>
     return (
         <div className="navbar  h-28 mb-4 text-black ">
@@ -67,7 +68,7 @@ const Header = () => {
 
         {/* Right side of navbar Start */}
         <div className="navbar-end">
-        <HeaderMode></HeaderMode>
+      
           {
             user?
             <>

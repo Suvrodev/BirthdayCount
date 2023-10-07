@@ -29,8 +29,8 @@ const Feedback = () => {
                  <title>Feedback || Birthday</title>
       </Helmet>
 
-      <div className="border-white border-2 m-2 p-5 rounded-xl w-8/12 mx-auto">
-        <h1 className="bg-orange-500 text-center p-2 w-full md:w-4/12 mx-auto font-bold rounded-md">Send Your Feedback</h1>
+      <div className="border-orange-600 border-2 m-2 p-5 rounded-xl w-8/12 mx-auto">
+        <h1 className="bg-orange-500 text-center p-2 w-full md:w-4/12 mx-auto font-bold rounded-md text-white">Send Your Feedback</h1>
         <form ref={form} onSubmit={sendEmail}>
           <label className="font-bold">Name</label> <br />
           <input className="w-full p-4 rounded-md my-4" type="text" name="user_name" placeholder="Write Your Name" /> <br />
