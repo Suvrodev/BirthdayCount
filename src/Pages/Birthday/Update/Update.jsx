@@ -11,11 +11,11 @@ const Update = () => {
     const imageHostingUrl=`https://api.imgbb.com/1/upload?key=${imageHosting_Token}`
     //console.log("URL: ",imageHostingUrl);
 
-    const {user,successfullToast,unSuccessfullToast}=useContext(AuthContext)
+    const {user,successfullToast,unSuccessfullToast,baseUrl}=useContext(AuthContext)
     const {id}=useParams()
     const [friend,setfriend]=useState("")
     useEffect(()=>{
-        fetch(`https://birthday-count-server-m5zoggazj-suvrodev.vercel.app/bd/${id}`)
+        fetch(`${baseUrl}bd/${id}`)
         .then(res=>res.json())
         .then(data=>setfriend(data))
     },[])
@@ -40,7 +40,7 @@ const Update = () => {
             people={name,dob,ratting:parseInt(ratting),phone,location,ref:user?.email,image}
             console.log("People: ",people);
 
-            fetch(`https://birthday-count-server-m5zoggazj-suvrodev.vercel.app/bd/${_id}`,{
+            fetch(`${baseUrl}bd/${_id}`,{
                 method: 'PATCH',
                 headers:{
                     'content-type':'application/json'
@@ -72,7 +72,7 @@ const Update = () => {
     
 
                 ////Patch Data start
-                fetch(`https://birthday-count-server-m5zoggazj-suvrodev.vercel.app/bd/${_id}`,{
+                fetch(`${baseUrl}bd/${_id}`,{
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'

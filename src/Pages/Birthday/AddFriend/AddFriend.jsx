@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet-async';
 const imageHosting_Token=import.meta.env.VITE_IMAGE_TOKEN
 const AddFriend = () => {
 
-    const {user,successfullToast,unSuccessfullToast}=useContext(AuthContext)
+    const {user,successfullToast,unSuccessfullToast,baseUrl}=useContext(AuthContext)
 
     //  console.log("Token: ",imageHosting_Token);
      const imageHostingUrl=`https://api.imgbb.com/1/upload?key=${imageHosting_Token}`
@@ -44,7 +44,7 @@ const AddFriend = () => {
 
                 people.image=image
                 ////Post Data start
-                fetch(`https://birthday-count-server-m5zoggazj-suvrodev.vercel.app/bd`,{
+                fetch(`${baseUrl}bd`,{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

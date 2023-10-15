@@ -13,7 +13,7 @@ const Login = () => {
     // console.log("Target: ",target);
 
     const navigate=useNavigate()
-    const {user,signInByGoogle,successfullToast,unSuccessfullToast,loginByEmailPassword}=useContext(AuthContext)
+    const {user,signInByGoogle,successfullToast,unSuccessfullToast,loginByEmailPassword,baseUrl}=useContext(AuthContext)
 
     const [showPassword,setShowPassword]=useState(false)
     const handlePassword=()=>{
@@ -30,7 +30,7 @@ const Login = () => {
 
             ////USer post operation start
             const thisUser={name:loggedUser?.displayName, emai:loggedUser?.email,photo:loggedUser?.photoURL,role:''}
-            fetch('http://localhost:7000/user',{
+            fetch(`${baseUrl}user`,{
             method: 'POST',
             headers: {
                 'content-type':'application/json'

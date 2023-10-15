@@ -9,13 +9,13 @@ import { Helmet } from 'react-helmet-async';
 
 const AllFriends = () => {
 
-    const {user,successfullToast}=useContext(AuthContext)
+    const {user,successfullToast,baseUrl}=useContext(AuthContext)
 
     ///For Total Janogon start
     const [check,setCheck]=useState(true)
     const [totalJonogon,setTotalJonogon]=useState([])
     useEffect(()=>{
-        fetch(`https://birthday-count-server-m5zoggazj-suvrodev.vercel.app/bds?email=${user?.email}`)
+        fetch(`${baseUrl}bds?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>setTotalJonogon(data))
     },[check])
@@ -79,7 +79,7 @@ const AllFriends = () => {
             if (result.isConfirmed) {
 
               ///Delete Start
-              fetch(`https://birthday-count-server-m5zoggazj-suvrodev.vercel.app/bd/${_id}`,{
+              fetch(`${baseUrl}bd/${_id}`,{
                 method: 'DELETE'
             })
             .then(res=>res.json())
@@ -110,7 +110,7 @@ const AllFriends = () => {
 
      ///Load data start
      useEffect(()=>{
-        fetch(`https://birthday-count-server-m5zoggazj-suvrodev.vercel.app/bd?email=${user?.email}&sort=${sort}&search=${search}&page=${currentPage}&limit=${peoplePerPage}`)
+        fetch(`${baseUrl}bd?email=${user?.email}&sort=${sort}&search=${search}&page=${currentPage}&limit=${peoplePerPage}`)
         .then(res=>res.json())
         .then(data=>setFriends(data))
     },[check,sort,search,currentPage,peoplePerPage])

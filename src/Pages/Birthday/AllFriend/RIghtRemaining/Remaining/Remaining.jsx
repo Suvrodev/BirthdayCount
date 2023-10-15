@@ -15,12 +15,12 @@ const Remaining = () => {
     ////Today Date End
 
 
-    const {user}=useContext(AuthContext)
+    const {user,baseUrl}=useContext(AuthContext)
     const [peoples,setPeoples]=useState([])
     const [newPeoples,setNewPeoples]=useState([])
 
     useEffect(()=>{
-        fetch(`https://birthday-count-server-m5zoggazj-suvrodev.vercel.app/bds?email=${user?.email}`)
+        fetch(`${baseUrl}bds?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             // console.log("Data: ",data);

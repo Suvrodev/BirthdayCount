@@ -14,7 +14,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const { registerByEmailPassword, successfullToast, unSuccessfullToast } =
+  const { registerByEmailPassword, successfullToast, unSuccessfullToast,baseUrl } =
     useContext(AuthContext);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -46,7 +46,7 @@ const SignUp = () => {
 
         ////USer post operation start
         const thisUser={name,email:user.email,photo,role:''}
-        fetch('http://localhost:7000/user',{
+        fetch(`${baseUrl}user`,{
           method: 'POST',
           headers: {
             'content-type':'application/json'
