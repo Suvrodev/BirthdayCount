@@ -97,7 +97,7 @@ const AllFriends = () => {
 
      ///Pagination start
      const [currentPage,setCurrentPage]=useState(0)
-     console.log("Current Page: ",currentPage);
+    //  console.log("Current Page: ",currentPage);
 
      const peoplePerPage=5
      const totalPage=Math.ceil(totalJonogon.length/peoplePerPage)

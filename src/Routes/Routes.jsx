@@ -15,6 +15,8 @@ import About from "../Pages/Admin/About/About";
 import Feedback from "../Pages/Admin/Feedback/Feedback";
 import ErrorElement from "../Pages/ErrorElement/ErrorElement";
 import Extra from "../Pages/Extra/Extra";
+import Dashboard from "../Pages/DashBoard/Dashboard/Dashboard";
+import AllUser from "../Pages/DashBoard/AllUser/AllUser";
 
 
 const router = createBrowserRouter([
@@ -69,6 +71,16 @@ const router = createBrowserRouter([
         }
     ]
 },
+{
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+        {
+            path: '/dashboard/allusers',
+            element: <AllUser></AllUser>
+        }
+    ]
+}
 ]);
 
 export default router;

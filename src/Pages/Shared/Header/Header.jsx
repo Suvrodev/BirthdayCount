@@ -20,6 +20,7 @@ const Header = () => {
     }
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/about'>About</NavLink ></li>
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/feedback'>Feedback</NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/dashboard'><span className='font-bold text-yellow-400'>Dashboard</span></NavLink ></li>
     <HeaderMode></HeaderMode>
     </div>
     return (
