@@ -43,8 +43,26 @@ const SignUp = () => {
     })
       .then((result) => {
         console.log("Update Result:", result);
-        successfullToast("SinUp Successfully");
-        navigate("/home");
+
+        ////USer post operation start
+        const thisUser={name,email:user.email,photo,role:''}
+        fetch('http://localhost:7000/user',{
+          method: 'POST',
+          headers: {
+            'content-type':'application/json'
+          },
+          body:JSON.stringify(thisUser)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log("Come Data: ");
+           if(data.insertedId){
+              successfullToast("SinUp Successfully");
+              navigate("/home");
+           }
+        })
+        ////USer post operation end
+       
       })
       .catch((error) => {
         console.log("Error in Update: ", error.message);
@@ -117,7 +135,7 @@ const SignUp = () => {
           <p className="border w-[80%] mx-auto my-5"></p>
           <p className="font-bold my-4">Name</p>
           <input
-            className="w-[100%] p-2 mx-auto text-white border-0 outline-none"
+            className="w-[100%] p-2 mx-auto text-orange-500 border-0 outline-none"
             type="text"
             name="name"
             placeholder="Enter your Name"
@@ -134,7 +152,7 @@ const SignUp = () => {
 
           <p className="font-bold my-4">Email Address</p>
           <input
-            className="w-[100%] p-2 mx-auto text-white border-0 outline-none"
+            className="w-[100%] p-2 mx-auto text-orange-500 border-0 outline-none"
             type="email"
             name="email"
             placeholder="Enter your email address"
@@ -143,7 +161,7 @@ const SignUp = () => {
           <p className="font-bold my-4">Password</p>
           <div className="relative">
             <input
-              className="w-[100%] p-2 mx-auto text-white border-0 outline-none"
+              className="w-[100%] p-2 mx-auto text-orange-500 border-0 outline-none"
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Enter your Password"
@@ -160,7 +178,7 @@ const SignUp = () => {
           <p className="font-bold my-4">Re-Type Password</p>
           <div className="relative">
             <input
-              className="w-[100%] p-2 mx-auto text-white border-0 outline-none"
+              className="w-[100%] p-2 mx-auto text-orange-500 border-0 outline-none"
               type={showConfirmPassword ? "text" : "password"}
               name="Cpassword"
               placeholder="Retype Password"

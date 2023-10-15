@@ -1,7 +1,7 @@
 .ICON{
     position: absolute;
     top: 50%;
-    color: white;
+    color: orange;
     right: 20px;
     transform: translateY(-50%);
 }

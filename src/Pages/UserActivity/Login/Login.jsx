@@ -26,7 +26,27 @@ const Login = () => {
         .then(result=>{
             const loggedUser=result.user;
             console.log("Google User: ",loggedUser);
-            navigate(target,true)
+
+
+            ////USer post operation start
+            const thisUser={name:loggedUser?.displayName, emai:loggedUser?.email,photo:loggedUser?.photoURL,role:''}
+            fetch('http://localhost:7000/user',{
+            method: 'POST',
+            headers: {
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(thisUser)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log("Come data: ",data);
+                if(data){
+                    successfullToast("Signin Successfully");
+                    navigate(target,true)
+                }
+            })
+            ////USer post operation end
+          
         })
         .catch(error=>{
             console.log("Google Error: ",error.message);
