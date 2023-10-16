@@ -17,6 +17,8 @@ const AllUser = () => {
         .then(data=>setAllUser(data))
     },[check]) 
 
+
+    ///Delete Start
    const handleDelete=(id)=>{
     Swal.fire({
         title: 'Are you sure?',
@@ -44,6 +46,29 @@ const AllUser = () => {
         }
       })
    }
+   ////Delete End
+
+   ///Update start
+   const handleMakeAdmin=(user)=>{
+    //  console.log("Update: ",user);
+     user.role="admin"
+    //  console.log("Make admin: ",user);
+     fetch(`${baseUrl}user/${user._id}`,{
+        method: 'PATCH',
+        headers: {
+            'content-type':'application/json'
+        },
+        body: JSON.stringify(user)
+     })
+     .then(res=>res.json())
+     .then(data=>{
+        if(data.modifiedCount>0){
+            setCheck(!check)
+            successfullToast("Made an admin")
+        }
+     })
+   }
+   ///Update en
     return (
         <div className='w-full'>
         <h3 className='text-3xl font-semibold my-4'>Total users: {alluser.length} </h3>
