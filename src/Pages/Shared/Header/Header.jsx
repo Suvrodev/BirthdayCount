@@ -5,9 +5,32 @@ import { FaUser } from 'react-icons/fa6';
 import logo from '../../../assets/logo/logo.png'
 import { AuthContext } from '../../../Provider/AuthProvider';
 import HeaderMode from './HeaderMode/HeaderMode';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Header = () => {
-    const {user,Logout_,successfullToast}=useContext(AuthContext)
+    const {user,Logout_,successfullToast,baseUrl}=useContext(AuthContext)
+
+    let EMAIL=user?.email;
+    console.log("Header Mail: ",EMAIL);
+    const [checkAdmin,setCheckAdmin]=useState("")
+    useEffect(()=>{
+       if(EMAIL){
+        fetch(`${baseUrl}allusers/${EMAIL}`)
+        .then(res=>res.json())
+        .then(data=>setCheckAdmin(data))
+       }
+    },[EMAIL])
+    // console.log("Admin: ",checkAdmin);
+    let isAdmin;
+    if(checkAdmin?.role==='admin'){
+      isAdmin=true
+    }else{
+      isAdmin=false
+    }
+    console.log("isAdmin: ",isAdmin);
+
+    
 
     const navItems=<div className='lg:flex items-center justify-center'>
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/home'>Home</NavLink ></li>
@@ -20,7 +43,7 @@ const Header = () => {
     }
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/about'>About</NavLink ></li>
     <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/feedback'>Feedback</NavLink ></li>
-    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to='/dashboard'><span className='font-bold text-yellow-400'>Dashboard</span></NavLink ></li>
+    <li><NavLink className={({isActive})=> isActive? 'text-blue-500 font-extrabold':''}  to={`${isAdmin?'/dashboard/allusers':'/'} `}><span className='font-bold text-yellow-400'>Dashboard</span></NavLink ></li>
     <HeaderMode></HeaderMode>
     </div>
     return (
