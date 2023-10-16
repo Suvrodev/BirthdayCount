@@ -29,7 +29,7 @@ const Login = () => {
 
 
             ////USer post operation start
-            const thisUser={name:loggedUser?.displayName, emai:loggedUser?.email,photo:loggedUser?.photoURL,role:''}
+            const thisUser={name:loggedUser?.displayName, email:loggedUser?.email,photo:loggedUser?.photoURL,role:''}
             fetch(`${baseUrl}user`,{
             method: 'POST',
             headers: {

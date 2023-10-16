@@ -55,7 +55,7 @@ const SignUp = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-          console.log("Come Data: ");
+          console.log("Come Data: ",data);
            if(data.insertedId){
               successfullToast("SinUp Successfully");
               navigate("/home");
