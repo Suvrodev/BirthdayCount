@@ -17,6 +17,7 @@ import ErrorElement from "../Pages/ErrorElement/ErrorElement";
 import Extra from "../Pages/Extra/Extra";
 import Dashboard from "../Pages/DashBoard/Dashboard/Dashboard";
 import AllUser from "../Pages/DashBoard/AllUser/AllUser";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -73,11 +74,11 @@ const router = createBrowserRouter([
 },
 {
     path: '/dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
         {
             path: '/dashboard/allusers',
-            element: <AllUser></AllUser>
+            element:<PrivateRoute><AllUser></AllUser></PrivateRoute>
         }
     ]
 }

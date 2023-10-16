@@ -12,7 +12,7 @@ const Header = () => {
     const {user,Logout_,successfullToast,baseUrl}=useContext(AuthContext)
 
     let EMAIL=user?.email;
-    console.log("Header Mail: ",EMAIL);
+    // console.log("Header Mail: ",EMAIL);
     const [checkAdmin,setCheckAdmin]=useState("")
     useEffect(()=>{
        if(EMAIL){
@@ -28,7 +28,7 @@ const Header = () => {
     }else{
       isAdmin=false
     }
-    console.log("isAdmin: ",isAdmin);
+    // console.log("isAdmin: ",isAdmin);
 
     
 

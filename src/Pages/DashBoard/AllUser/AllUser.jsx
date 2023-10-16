@@ -5,9 +5,45 @@ import { useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const AllUser = () => {
-    const {user,successfullToast,unSuccessfullToast,baseUrl}=useContext(AuthContext)
+    const {user,successfullToast,unSuccessfullToast,baseUrl,Logout_}=useContext(AuthContext)
+   
+
+    /**
+     * Check Admin start
+     */
+    const navigate=useNavigate()
+    let EMAIL=user?.email;
+    console.log("All User Mail: ",EMAIL);
+
+    const [checkAdmin,setCheckAdmin]=useState("")
+    useEffect(()=>{
+       if(EMAIL){
+        fetch(`${baseUrl}allusers/${EMAIL}`)
+        .then(res=>res.json())
+        .then(data=>setCheckAdmin(data))
+       }
+    },[EMAIL])
+    console.log("Check User(AllUSer): ",checkAdmin);
+
+    
+    let isAdmin=checkAdmin?.role;
+    console.log("IS ADminnnnnnnnnnnnnnnnnnn: ",isAdmin);
+    if(!isAdmin){
+        navigate('/home',true)
+    }
+
+    console.log("AllUser isAdmin: ",isAdmin);
+
+    
+
+
+
+    /**
+     * Check Admin End
+     */
 
     const [check,setCheck]=useState(true)
     const [alluser,setAllUser]=useState([])

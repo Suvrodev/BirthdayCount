@@ -12,7 +12,7 @@ const Dashboard = () => {
 
     ////Check Admin or not start
     let EMAIL=user?.email;
-    console.log("Dashboard Mail: ",EMAIL);
+    //console.log("Dashboard Mail: ",EMAIL);
     const [checkAdmin,setCheckAdmin]=useState("")
 
     useEffect(()=>{
@@ -22,7 +22,7 @@ const Dashboard = () => {
         .then(data=>setCheckAdmin(data))
        }
     },[EMAIL])
-    console.log("Check User(DashBoard): ",checkAdmin);
+    // console.log("Check User(DashBoard): ",checkAdmin);
 
     const navigate=useNavigate()
     let isAdmin;
@@ -31,7 +31,7 @@ const Dashboard = () => {
     }else{
         isAdmin=false
     }
-    console.log("Dashboard isAdmin: ",isAdmin);
+    // console.log("Dashboard isAdmin: ",isAdmin);
     ////Check Admin or not End
 
     return (
