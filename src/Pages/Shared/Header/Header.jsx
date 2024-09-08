@@ -24,7 +24,7 @@ const Header = () => {
           Home
         </NavLink>
       </li>
-      {user && (
+      {databseUser && (
         <>
           <li>
             <NavLink
