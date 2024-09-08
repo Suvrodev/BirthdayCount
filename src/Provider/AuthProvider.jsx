@@ -17,8 +17,9 @@ const AuthProvider = ({ children }) => {
   const [databseUser, setDatabaseUser] = useState("");
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
-  let baseUrl = "http://localhost:7000/";
-  // let baseUrl='https://birthday-count-server-ahjnk9nr5-suvrodev.vercel.app/'
+
+  //   let baseUrl = "http://localhost:7000/";
+  let baseUrl = "https://birthday-count-server-ahjnk9nr5-suvrodev.vercel.app/";
 
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
