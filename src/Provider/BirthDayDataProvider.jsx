@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthProvider";
 import axios from "axios";
+import { useGetFriendsQuery } from "../Pages/Birthday/AllFriend/AllFriendsApi";
 
 export const DataContext = createContext("");
 const BirthDayDataProvider = ({ children }) => {
@@ -19,11 +20,25 @@ const BirthDayDataProvider = ({ children }) => {
       });
     }
   }, [databseUser]);
-  console.log("Peoples: ", peoples);
+  console.log("Peoples (Auth) : ", peoples);
   /**
    * Fetch All friends end
    */
 
+  /**
+   * For RTK query start
+   */
+  // const [peoples, setPeoples] = useState([]);
+  // const { isLoading, data } = useGetFriendsQuery(databseUser?.email);
+  // useEffect(() => {
+  //   if (data) {
+  //     setPeoples(data);
+  //   }
+  // }, [data]);
+  // console.log("Peoples from RTK-Query-(Auth)", peoples);
+  /**
+   * For RTK query end
+   */
   const authInfo = {
     peoples,
     isLoading,

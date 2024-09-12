@@ -8,13 +8,24 @@ import Remaining from "../RIghtRemaining/Remaining/Remaining";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
 import { DataContext } from "../../../../Provider/BirthDayDataProvider";
+import { useGetFriendsQuery } from "../AllFriendsApi";
 
 const AllFriends = () => {
   const { user, successfullToast, baseUrl, databseUser } =
     useContext(AuthContext);
-  const { peoples, isLoading } = useContext(DataContext);
+  // const { peoples, isLoading } = useContext(DataContext);
+
+  /**
+   * For RTK query start
+   */
+  const { isLoading, data: peoples } = useGetFriendsQuery(databseUser?.email);
+  console.log("Peoples from RTK-Query", peoples);
+  /**
+   * For RTK query end
+   */
+
   ///For Total Janogon start
-  const [check, setCheck] = useState(true);
+  // const [check, setCheck] = useState(true);
   // const [peoples, setpeoples] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
   // useEffect(() => {
