@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
 
+import loginImage from "../../../assets/LoginImage/LoginImage.jpg";
 const Login = () => {
   const location = useLocation();
   // console.log("Login Location: ",location);
@@ -95,56 +96,17 @@ const Login = () => {
       <Helmet>
         <title>Logim || Birthday</title>
       </Helmet>
-      <div className="hereForm  ">
-        <form action="" onSubmit={handleLogin} className="w-[80%] mx-auto">
-          <h1 className="text-black font-bold text-center">
-            Login Your Account
-          </h1>
-          <p className="border w-[80%] mx-auto my-5"></p>
-          <p className="font-bold mb-4">Email Address</p>
-          <input
-            className="w-[100%] p-2 mx-auto text-white border-0 outline-none"
-            type="email"
-            name="email"
-            placeholder="Enter your email address"
-            required
-          />
-          <p className="font-bold my-4">Password</p>
-          <div className="relative">
-            <input
-              className="w-[100%] p-2 mx-auto text-white border-0 outline-none"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Enter your Password"
-              required
-            />
-            <div onClick={handlePassword}>
-              {showPassword ? (
-                <FaEyeSlash className="ICON" />
-              ) : (
-                <FaEye className="ICON" />
-              )}
-            </div>
-          </div>
-          <br />
-          <button className="btn bg-black text-white w-[100%] mt-5">
-            Login
-          </button>
-          <p className="text-center mt-2">
-            Dont’t Have An Account ?{" "}
-            <Link to={"/signup"} className="text-red-500 font-bold">
-              SignUp
-            </Link>
-          </p>
-        </form>
-        <div className="w-[80%] mx-auto ">
-          <p className="text-center font-bold">Login With</p>
+      <div className="flex">
+        <div className="w-full md:w-[75%]">
+          <img src={loginImage} alt="" />
+        </div>
+        <div className="w-full md:w-[25%] flex items-center justify-center gap-4">
           <button
             onClick={handleGoogleLogin}
-            className="btn btn-group block mx-auto mt-2 bg-yellow-500 text-white border-0 "
+            className="btn  bg-[#4889F4] hover:bg-[#4889F4]"
           >
-            {" "}
-            <FaGoogle />{" "}
+            <FaGoogle className="text-white" />{" "}
+            <p className="tex-white text-white">Google</p>
           </button>
         </div>
       </div>

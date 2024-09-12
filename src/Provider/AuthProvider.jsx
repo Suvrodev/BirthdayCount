@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 export const AuthContext = createContext("");
 const AuthProvider = ({ children }) => {
@@ -18,8 +19,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
 
-  //   let baseUrl = "http://localhost:7000/";
-  let baseUrl = "https://birthday-count-server-ahjnk9nr5-suvrodev.vercel.app/";
+  let baseUrl = "http://localhost:7000/";
+  // let baseUrl = "https://birthday-count-server-green.vercel.app/";
 
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
@@ -30,18 +31,6 @@ const AuthProvider = ({ children }) => {
   };
   // Sign in By Google End
 
-  // /Register by Email and password start
-  const registerByEmailPassword = (email, passowrd) => {
-    return createUserWithEmailAndPassword(auth, email, passowrd);
-  };
-  // /Register by Email and password end
-
-  // /Login By Email And Password Start
-  const loginByEmailPassword = (email, passowrd) => {
-    return signInWithEmailAndPassword(auth, email, passowrd);
-  };
-  // /Login By Email And Password End
-
   ///Sign Out Start
   const Logout_ = () => [
     signOut(auth)
@@ -49,6 +38,7 @@ const AuthProvider = ({ children }) => {
         console.log("SignOut Successfully");
         localStorage.removeItem("brtd");
         setUserDep(!userDep);
+        setLoading(false);
       })
       .then((error) => {
         // console.log("SignOut Error: ",error.message);
@@ -57,14 +47,14 @@ const AuthProvider = ({ children }) => {
   ///Sign Out End
 
   // Check User start
-  //   useEffect(() => {
-  //     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //       console.log("Current User: ", currentUser);
-  //       setLoading(false);
-  //       setUser(currentUser);
-  //     });
-  //     return () => unSubscribe();
-  //   }, []);
+  // useEffect(() => {
+  //   const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     console.log("Current User: ", currentUser);
+  //     setLoading(false);
+  //     setUser(currentUser);
+  //   });
+  //   return () => unSubscribe();
+  // }, []);
   // Check User End
 
   ///Check Database user start
@@ -74,10 +64,11 @@ const AuthProvider = ({ children }) => {
       fetch(`${baseUrl}allusers/${email}`)
         .then((res) => res.json())
         .then((data) => {
-          setDatabaseUser(data);
           setLoading(false);
+          setDatabaseUser(data);
         });
     } else {
+      setLoading(false);
       setDatabaseUser(null);
     }
   }, [userDep]);
@@ -111,8 +102,6 @@ const AuthProvider = ({ children }) => {
     userDep,
     setUserDep,
     signInByGoogle,
-    registerByEmailPassword,
-    loginByEmailPassword,
     Logout_,
     successfullToast,
     unSuccessfullToast,

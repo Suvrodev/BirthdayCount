@@ -1,31 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import RemainingCard from "../RemainingCard/RemainingCard";
+import { DataContext } from "../../../../../Provider/BirthDayDataProvider";
 
 const Remaining = () => {
-  ////Today Date Start
-  // const currentDate = new Date();
-  // const year = currentDate.getFullYear();
-  // const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  // const day = String(currentDate.getDate()).padStart(2, '0');
-
-  // const today = `${year}-${month}-${day}`;
-  // console.log("Today Date: ",today);
-  ////Today Date End
-
-  const { user, baseUrl, databseUser } = useContext(AuthContext);
-  const [peoples, setPeoples] = useState([]);
-  const [newPeoples, setNewPeoples] = useState([]);
-
-  useEffect(() => {
-    fetch(`${baseUrl}bds?email=${databseUser?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log("Data: ",data);
-        // console.log("Length of Data: ",data.length);
-        setPeoples(data);
-      });
-  }, []);
+  const { user, baseUrl } = useContext(AuthContext);
+  const { peoples, isLoading } = useContext(DataContext);
 
   for (let i = 0; i < peoples.length; i++) {
     // console.log("In Loop: ",peoples[i].dob);
