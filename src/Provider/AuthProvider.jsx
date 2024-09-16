@@ -19,8 +19,9 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // let baseUrl = "http://localhost:7000/";
-  let baseUrl = "https://birthday-count-server-green.vercel.app/";
+  // let baseUrl = "http://localhost:3003/";
+  // let baseUrl = "https://birthday-count-server-green.vercel.app/";
+  let baseUrl = "https://birthdaycount-server-production.up.railway.app/";
 
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();

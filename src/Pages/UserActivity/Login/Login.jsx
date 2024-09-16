@@ -92,18 +92,18 @@ const Login = () => {
       });
   };
   return (
-    <div className="bg-purple-300 border-black border-1 rounded-lg m-5 p-4">
+    <div className="bg-purple-300 border-black border-1 rounded-lg p-4">
       <Helmet>
         <title>Logim || Birthday</title>
       </Helmet>
-      <div className="flex">
+      <div className="flex flex-col-reverse gap-4 md:flex-row ">
         <div className="w-full md:w-[75%]">
           <img src={loginImage} alt="" />
         </div>
         <div className="w-full md:w-[25%] flex items-center justify-center gap-4">
           <button
             onClick={handleGoogleLogin}
-            className="btn  bg-[#4889F4] hover:bg-[#4889F4]"
+            className="btn  bg-[#4889F4] hover:bg-[#4889F4] border-none"
           >
             <FaGoogle className="text-white" />{" "}
             <p className="tex-white text-white">Google</p>

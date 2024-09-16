@@ -1,9 +1,10 @@
-.logoImage{
-    width: 75px;
+.logoImage {
+  width: 75px;
+  height: 75px;
 }
-a{
-   color: var(--body_color);
+a {
+  color: var(--body_color);
 }
-.birthday{
-    color: var(--body_color);
+.birthday {
+  color: var(--body_color);
 }

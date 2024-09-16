@@ -4,13 +4,16 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const allFriendsApi = createApi({
   reducerPath: "allFriendsApi",
   baseQuery: fetchBaseQuery({
-    // baseUrl: "http://localhost:7000/",
-    baseUrl: "https://birthday-count-server-green.vercel.app/",
+    // baseUrl: "http://localhost:3003/",
+    // baseUrl: "https://birthday-count-server-green.vercel.app/",
+    baseUrl: "https://birthdaycount-server-production.up.railway.app/",
   }),
   endpoints: (builder) => ({
     getFriends: builder.query({
-      query: (email) => {
-        return `bds?email=${email}`;
+      query: ({ email, searchText }) => {
+        console.log("Email(RTK): ", email);
+        console.log("Search text(RTK): ", searchText);
+        return `bds?email=${email}&search=${searchText}`;
       },
     }),
   }),

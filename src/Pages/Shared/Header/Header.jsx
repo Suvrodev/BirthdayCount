@@ -13,20 +13,19 @@ const Header = () => {
     useContext(AuthContext);
 
   const navItems = (
-    <div className="lg:flex items-center justify-center">
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-blue-500 font-extrabold" : ""
-          }
-          to="/home"
-        >
-          Home
-        </NavLink>
-      </li>
-      {databseUser && (
-        <>
-          <li>
+    <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-4">
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "text-blue-500 font-extrabold" : ""
+        }
+        to="/home"
+      >
+        Home
+      </NavLink>
+
+      <div className="flex flex-col">
+        {databseUser && (
+          <div className="flex flex-col md:flex-row gap-4">
             <NavLink
               className={({ isActive }) =>
                 isActive ? "text-blue-500 font-extrabold" : ""
@@ -35,8 +34,7 @@ const Header = () => {
             >
               Birthday
             </NavLink>
-          </li>
-          <li>
+
             <NavLink
               className={({ isActive }) =>
                 isActive ? "text-blue-500 font-extrabold" : ""
@@ -45,39 +43,29 @@ const Header = () => {
             >
               Add Friend
             </NavLink>
-          </li>
-        </>
-      )}
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-blue-500 font-extrabold" : ""
-          }
-          to="/about"
-        >
-          About
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-blue-500 font-extrabold" : ""
-          }
-          to="/feedback"
-        >
-          Feedback
-        </NavLink>
-      </li>
-      <li>
+          </div>
+        )}
+      </div>
+
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "text-blue-500 font-extrabold" : ""
+        }
+        to="/feedback"
+      >
+        Feedback
+      </NavLink>
+
+      {databseUser && (
         <NavLink
           className={({ isActive }) =>
             isActive ? "text-blue-500 font-extrabold" : ""
           }
           to={`/dashboard/allusers`}
         >
-          <span className="font-bold text-yellow-400">Dashboard</span>
+          <span className=" ">Dashboard</span>
         </NavLink>
-      </li>
+      )}
       <HeaderMode></HeaderMode>
     </div>
   );
@@ -88,7 +76,7 @@ const Header = () => {
         {/* Bar Icon Box Start */}
         <div className="dropdown">
           {/* Bar Icon Start */}
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <label tabIndex={0} className={`btn btn-ghost lg:hidden`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -136,7 +124,7 @@ const Header = () => {
           <>
             {databseUser.photo && (
               <img
-                className="w-[35px] rounded-full mr-4"
+                className="w-[35px] h-[35px] rounded-full mr-4"
                 src={databseUser?.photo}
                 alt=""
               />

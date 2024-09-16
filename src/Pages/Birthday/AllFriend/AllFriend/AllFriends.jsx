@@ -9,6 +9,9 @@ import { Helmet } from "react-helmet-async";
 import axios from "axios";
 import { DataContext } from "../../../../Provider/BirthDayDataProvider";
 import { useGetFriendsQuery } from "../AllFriendsApi";
+import SearchIcon from "@mui/icons-material/Search";
+
+import { useInView } from "react-intersection-observer";
 
 const AllFriends = () => {
   const { user, successfullToast, baseUrl, databseUser } =
@@ -16,26 +19,73 @@ const AllFriends = () => {
   // const { peoples, isLoading } = useContext(DataContext);
 
   /**
+   * Intersection observer start
+   */
+  // const { ref, inView } = useInView({
+  //   threshold: 0,
+  // });
+
+  // const [page, setPage] = useState(0);
+  // useEffect(() => {
+  //   if (inView) {
+  //     setPage((page) => page + 1);
+  //   }
+  // }, [inView]);
+  // console.log("Inview: ", inView);
+  // console.log("Page(component): ", page);
+
+  /**
+   * Intersection observer end
+   */
+
+  /**
+   * Search Start
+   */
+  const [searchText, setSearchText] = useState("");
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setSearchText(value);
+  };
+  console.log("Search Text: ", searchText);
+
+  /**
+   * Search End
+   */
+
+  /**
    * For RTK query start
    */
-  const { isLoading, data: peoples } = useGetFriendsQuery(databseUser?.email);
-  console.log("Peoples from RTK-Query", peoples);
+  const { isLoading, data: peoples } = useGetFriendsQuery({
+    email: databseUser?.email,
+    searchText,
+    // page: page,
+  });
+  console.log("Data from RTK Query: ", peoples);
+
   /**
    * For RTK query end
    */
 
-  ///For Total Janogon start
-  // const [check, setCheck] = useState(true);
-  // const [peoples, setpeoples] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
+  // const [peoples, setPeoples] = useState([]);
   // useEffect(() => {
-  //   axios.get(`${baseUrl}bds?email=${databseUser?.email}`).then((res) => {
-  //     setpeoples(res.data);
-  //     setIsLoading(false);
-  //   });
-  // }, [check]);
-  // console.log("Total Peoples: ", peoples);
-  ///For Total Janogon end
+  //   if (data) {
+  //     setPeoples((prevPeople) => [...prevPeople, ...data]);
+  //   }
+  // }, [data]);
+  // console.log("All Peoples from RTK-Query", peoples);
+
+  /**
+   *  Total people from specific id start
+   */
+  const [totalCount, setTotalCount] = useState(0);
+  useEffect(() => {
+    axios.get(`${baseUrl}total?email=${databseUser?.email}`).then((res) => {
+      setTotalCount(res.data?.total);
+    });
+  }, []);
+  /**
+   *  Total people from specific id end
+   */
 
   ///Delete Work start
   const handleDelete = (_id) => {
@@ -80,24 +130,26 @@ const AllFriends = () => {
       <Helmet>
         <title>People List || Birthday</title>
       </Helmet>
-      <h1 className="bg-orange-500 w-4/12 mx-auto text-center p-2 mb-5 rounded-lg font-bold">
-        Your All Friend: {peoples.length}
+      <h1 className="bg-orange-500 text-white w-4/12 mx-auto text-center p-2 mb-5 rounded-lg font-bold">
+        Your All Friend: {totalCount}
       </h1>
-      {peoples.length == 0 ? (
-        <div>
-          <h1 className="bg-red-600 rounded-lg p-2 font-bold text-white text-center w-4/12 mx-auto">
-            You have not added Any Friend
-          </h1>
-          <Link to={"/addfriend"}>
-            {" "}
-            <button className="btn btn-warning text-white block mx-auto my-4">
-              Add Friend
-            </button>{" "}
-          </Link>
-        </div>
-      ) : (
+      {peoples.length > 0 ? (
         <div>
           {/* Main Work Start */}
+
+          {/*Srarching end */}
+          <div className="w-full flex justify-center  items-center gap-2 ">
+            <input
+              type="text"
+              placeholder="Search…"
+              className="input input-bordered"
+              onChange={handleSearch}
+            />
+            <button className="btn bg-green-600 hover:bg-green-700 border-0 btn-square">
+              <SearchIcon />
+            </button>
+          </div>
+          {/*Searching end*/}
 
           <div className="birthdayContainder">
             <div className="birthdayContainderLeft">
@@ -110,6 +162,10 @@ const AllFriends = () => {
                   ></SingleFriend>
                 ))}
               </div>
+
+              <div className="text-center mt-4">
+                {/* <span className="loading loading-spinner loading-lg bg-warning"></span> */}
+              </div>
             </div>
             <div className="birthdayContainderRight">
               <h1 className="bg-green-500 p-2 text-center text-white font-bold rounded-md">
@@ -121,6 +177,18 @@ const AllFriends = () => {
             </div>
           </div>
           {/* Main Work End */}
+        </div>
+      ) : (
+        <div>
+          <h1 className="bg-red-600 rounded-lg p-2 font-bold text-white text-center w-4/12 mx-auto">
+            You have not added Any Friend
+          </h1>
+          <Link to={"/addfriend"}>
+            {" "}
+            <button className="btn btn-warning text-white block mx-auto my-4">
+              Add Friend
+            </button>{" "}
+          </Link>
         </div>
       )}
     </div>

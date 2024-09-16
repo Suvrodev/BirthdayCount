@@ -20,7 +20,7 @@ const BirthDayDataProvider = ({ children }) => {
       });
     }
   }, [databseUser]);
-  console.log("Peoples (Auth) : ", peoples);
+  // console.log("Peoples (Auth) : ", peoples);
   /**
    * Fetch All friends end
    */
