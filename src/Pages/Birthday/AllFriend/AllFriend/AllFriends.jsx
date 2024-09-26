@@ -10,6 +10,7 @@ import axios from "axios";
 import { DataContext } from "../../../../Provider/BirthDayDataProvider";
 import { useGetFriendsQuery } from "../AllFriendsApi";
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 
 import { useInView } from "react-intersection-observer";
 
@@ -117,6 +118,18 @@ const AllFriends = () => {
   };
   ///Delete work End
 
+  /**
+   * Remove Search Box Text start
+   */
+  const handleRemoveSearchText = () => {
+    console.log("Check cross");
+    setSearchText("");
+    console.log("Search Text: ", searchText);
+  };
+  /**
+   * Remove Search Box Text end
+   */
+
   if (isLoading) {
     return (
       <div className="h-[80vh] w-full flex items-center justify-center">
@@ -130,36 +143,48 @@ const AllFriends = () => {
       <Helmet>
         <title>People List || Birthday</title>
       </Helmet>
-      <h1 className="bg-orange-500 text-white w-4/12 mx-auto text-center p-2 mb-5 rounded-lg font-bold">
+      <h1 className="bg-orange-500 text-white w-full md:w-4/12 mx-auto text-center p-2 mb-5 rounded-lg font-bold">
         Your All Friend: {totalCount}
       </h1>
-      {peoples.length > 0 ? (
+      {totalCount > 0 ? (
         <div>
           {/* Main Work Start */}
 
-          {/*Srarching end */}
-          <div className="w-full flex justify-center  items-center gap-2 ">
-            <input
-              type="text"
-              placeholder="Search…"
-              className="input input-bordered"
-              onChange={handleSearch}
-            />
-            <button className="btn bg-green-600 hover:bg-green-700 border-0 btn-square">
-              <SearchIcon />
-            </button>
-          </div>
-          {/*Searching end*/}
-
           <div className="birthdayContainder">
             <div className="birthdayContainderLeft">
+              {/*Searching start */}
+              <div className="w-full flex justify-center  items-center gap-2 ">
+                <div className="relative bg-green-40">
+                  <input
+                    type="text"
+                    placeholder="Search…"
+                    className="input input-bordered"
+                    onChange={handleSearch}
+                    value={searchText ? searchText : ""}
+                  />
+                  <div
+                    className={`absolute right-2 top-1/2 transform -translate-y-1/2 ${
+                      searchText.length > 0 ? "" : "hidden"
+                    }`}
+                  >
+                    <CloseIcon onClick={handleRemoveSearchText} />
+                  </div>
+                </div>
+                <button className="btn bg-green-600 hover:bg-green-700 border-0 btn-square">
+                  <SearchIcon />
+                </button>
+              </div>
+              {/*Searching end*/}
+
               <div>
-                {peoples.map((friend) => (
-                  <SingleFriend
-                    key={friend._id}
-                    friend={friend}
-                    handleDelete={handleDelete}
-                  ></SingleFriend>
+                {peoples.map((friend, idx) => (
+                  <div key={idx}>
+                    <SingleFriend
+                      key={friend._id}
+                      friend={friend}
+                      handleDelete={handleDelete}
+                    ></SingleFriend>
+                  </div>
                 ))}
               </div>
 
@@ -167,6 +192,7 @@ const AllFriends = () => {
                 {/* <span className="loading loading-spinner loading-lg bg-warning"></span> */}
               </div>
             </div>
+
             <div className="birthdayContainderRight">
               <h1 className="bg-green-500 p-2 text-center text-white font-bold rounded-md">
                 Remaining Days

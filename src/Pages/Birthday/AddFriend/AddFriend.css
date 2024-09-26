@@ -1,0 +1,4 @@
+.removeDefaultIcon::-webkit-inner-spin-button,
+.removeDefaultIcon::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}

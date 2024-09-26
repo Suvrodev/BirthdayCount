@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import { Rating } from "@smastrom/react-rating";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import goCall from "../../../../JSFile/goCall";
 
 const SingleFriend = ({ friend, handleDelete }) => {
   // console.log(friend);
@@ -15,15 +16,22 @@ const SingleFriend = ({ friend, handleDelete }) => {
         <img className="" src={image} alt="" />
       </div>
       <div className="text-center midPortionCard">
-        <h1 className="font-bold text-green-500 italic">{name}</h1>
-        <h1 className="font-bold text-orange-600">{dob}</h1>
+        <h1 className="font-bold text-green-500 italic text-[12px] md:text-[16px]">
+          {name}
+        </h1>
+        <h1 className="font-bold text-orange-600 text-[12px] md:text-[16px]">
+          {dob}
+        </h1>
         <div className="flex gap-5 font-bold">
           <div>
-            <Rating style={{ maxWidth: 100 }} value={ratting} readOnly />
+            <Rating style={{ maxWidth: 90 }} value={ratting} readOnly />
           </div>
         </div>
-        <p className="font-bold">
-          Phone: <span className="text-yellow-500">{phone}</span>
+        <p className="font-bold text-[12px] md:text-[16px]">
+          Phone:{" "}
+          <span className="text-yellow-500 " onClick={() => goCall(phone)}>
+            {phone}
+          </span>
         </p>
       </div>
 

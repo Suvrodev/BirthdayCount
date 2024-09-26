@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import "./AddFriend.css";
+
 import { AuthContext } from "../../../Provider/AuthProvider";
 import img from "../../../assets/Image/Image_.jpeg";
 import { Helmet } from "react-helmet-async";
@@ -96,7 +98,7 @@ const AddFriend = () => {
             <input
               type="date"
               name="date"
-              className="input input-bordered"
+              className="input input-bordered "
               required
             />
           </div>
@@ -122,7 +124,7 @@ const AddFriend = () => {
               placeholder="Ratting"
               max={5}
               min={1}
-              className="input input-bordered"
+              className="input input-bordered removeDefaultIcon"
               required
             />
           </div>
@@ -134,7 +136,7 @@ const AddFriend = () => {
               type="number"
               name="phone"
               placeholder="Phone Number"
-              className="input input-bordered"
+              className="input input-bordered removeDefaultIcon"
               required
             />
           </div>

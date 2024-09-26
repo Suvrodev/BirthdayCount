@@ -165,7 +165,7 @@ const Update = () => {
               placeholder="Ratting"
               max={5}
               min={1}
-              className="input input-bordered"
+              className="input input-bordered removeDefaultIcon"
               defaultValue={ratting}
               required
             />
@@ -178,7 +178,7 @@ const Update = () => {
               type="number"
               name="phone"
               placeholder="Phone Number"
-              className="input input-bordered"
+              className="input input-bordered removeDefaultIcon"
               defaultValue={phone}
               required
             />

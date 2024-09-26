@@ -51,6 +51,7 @@
     height: 180px;
     margin-top: 10px;
     gap: 5px;
+    padding: 0 2px;
   }
   .cardImage {
     width: 30%;
