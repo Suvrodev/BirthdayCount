@@ -12,7 +12,7 @@ const MobileHeader = () => {
 
   return (
     <div className="relative">
-      <div className="absolute w-full  flex justify-between items-center py-2 px-5 bg-[#0F172A]">
+      <div className="absolute w-full  flex justify-between items-center py-2 px-5 ">
         <img src={logo} alt="" className=" w-[50px] h-[50px] rounded-full" />
         <div className="">
           <div

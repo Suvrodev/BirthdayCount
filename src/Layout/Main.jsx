@@ -10,7 +10,7 @@ import MobileHeader from "../Pages/Shared/Header/MobileHeader/MobileHeader";
 const Main = () => {
   return (
     <div>
-      <div className="-z-30">
+      <div className="">
         <HeaderUpper></HeaderUpper>
       </div>
       <div className="hidden md:block">
@@ -21,7 +21,9 @@ const Main = () => {
       </div>
 
       {/* <Header></Header> */}
-      <Outlet></Outlet>
+      <div>
+        <Outlet></Outlet>
+      </div>
       {/* <Footer></Footer> */}
       <GoToTop />
     </div>

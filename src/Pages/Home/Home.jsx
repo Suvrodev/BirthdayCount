@@ -11,7 +11,7 @@ const Home = () => {
     localStorage.setItem("brtd", "suvrodevhowlader1408@gmail.com");
   };
   return (
-    <div className="  overflow-auto ">
+    <div className="mt-20 md:mt-0">
       <h1 className="bg-green-600 p-2 md:p-5 m-5 w-8/12 md:w-6/12 text-white text-[16px] md:text-xl text-center rounded-lg mx-auto">
         WelCome To Birthday Count
       </h1>

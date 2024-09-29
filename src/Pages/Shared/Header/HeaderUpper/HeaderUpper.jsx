@@ -4,7 +4,7 @@ import moment from "moment/moment";
 
 const HeaderUpper = () => {
   return (
-    <div className="relative z-50 upper">
+    <div className="upper">
       <div className="z-30 ">
         <div className="text-center ">
           <h1 className="headerTitle">Birthday Count</h1>
