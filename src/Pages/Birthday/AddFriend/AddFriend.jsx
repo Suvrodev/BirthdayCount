@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./AddFriend.css";
 
 import { AuthContext } from "../../../Provider/AuthProvider";
@@ -13,6 +13,8 @@ const AddFriend = () => {
   //  console.log("Token: ",imageHosting_Token);
   const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageHosting_Token}`;
   //  console.log("URL: ",imageHostingUrl);
+
+  const [imagePreview, setImagePreview] = useState(null); // For image preview
 
   const handleAddFriend = (event) => {
     event.preventDefault();
@@ -69,14 +71,33 @@ const AddFriend = () => {
     }
   };
 
+  // Function to handle image selection and display preview
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const previewUrl = URL.createObjectURL(file);
+      setImagePreview(previewUrl); // Set the preview URL
+    }
+  };
+
   return (
     <div>
       <Helmet>
         <title>Add Friend || Birthday</title>
       </Helmet>
-      <h1 className="w-4/12 bg-slate-500 p-4 text-center rounded-xl mx-auto font-bold">
+      <h1 className="w-10/12 md:w-4/12 bg-slate-500 p-2 text-center rounded-xl mx-auto font-bold">
         Add Friend
       </h1>
+
+      {imagePreview && (
+        <div className="mt-4">
+          <img
+            src={imagePreview}
+            alt="Preview"
+            className="w-1/2 md:w-1/4 h-[250px] mx-auto rounded"
+          />
+        </div>
+      )}
       <form onSubmit={handleAddFriend} className="p-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="form-control">
@@ -98,7 +119,7 @@ const AddFriend = () => {
             <input
               type="date"
               name="date"
-              className="input input-bordered "
+              className="input input-bordered w-full"
               required
             />
           </div>
@@ -111,6 +132,7 @@ const AddFriend = () => {
               name="photo"
               placeholder="Image"
               className="file-input file-input-bordered w-full "
+              onChange={handleImageChange}
               required
             />
           </div>

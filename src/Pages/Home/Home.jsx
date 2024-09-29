@@ -5,6 +5,7 @@ import img3 from "../../assets/Gallery/3.png";
 import img4 from "../../assets/Gallery/4.png";
 import img5 from "../../assets/Gallery/5.png";
 import img6 from "../../assets/Gallery/6.png";
+import HomeGallery from "./HomeGallery/HomeGallery";
 const Home = () => {
   const setMail = () => {
     localStorage.setItem("brtd", "suvrodevhowlader1408@gmail.com");
@@ -15,12 +16,13 @@ const Home = () => {
         WelCome To Birthday Count
       </h1>
 
-      <div className="hidden">
+      {/* <div className="hidden">
         <button className="btn btn-primary" onClick={() => setMail()}>
           Developing Login
         </button>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-5  p-5">
+      </div> */}
+      <HomeGallery />
+      {/* <div className="grid grid-cols-2 md:grid-cols-3 gap-5  p-5">
         <img
           className="w-[250px] flex items-center justify-center"
           src={img1}
@@ -51,7 +53,7 @@ const Home = () => {
           src={img6}
           alt=""
         />
-      </div>
+      </div> */}
     </div>
   );
 };

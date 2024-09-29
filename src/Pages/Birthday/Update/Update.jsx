@@ -109,11 +109,11 @@ const Update = () => {
       <Helmet>
         <title>Update || Birthday</title>
       </Helmet>
-      <h1 className="w-4/12 bg-slate-500 p-4 text-center rounded-xl mx-auto font-bold">
+      <h1 className="w-10/12 md:w-4/12 bg-slate-500 p-2 text-center rounded-xl mx-auto font-bold">
         Update Friend
       </h1>
       <img
-        className="w-[155px] block mx-auto my-5 rounded-xl"
+        className="w-[155px] md:w-[250px] block mx-auto my-5 rounded-xl"
         src={image}
         alt=""
       />

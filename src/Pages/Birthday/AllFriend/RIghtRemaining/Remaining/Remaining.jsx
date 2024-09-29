@@ -32,7 +32,9 @@ const Remaining = () => {
 
     ///console.log(`Your next birthday is ${daysUntilNextBirthday} days away.`);
     ////Calculation end
-    if (daysUntilNextBirthday == 366) {
+
+    ///In here convert 366 to 365
+    if (daysUntilNextBirthday == 365) {
       daysUntilNextBirthday = 0;
     }
     peoples[i].remaining = daysUntilNextBirthday;

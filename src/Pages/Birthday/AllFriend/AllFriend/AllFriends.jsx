@@ -42,6 +42,8 @@ const AllFriends = () => {
   /**
    * Search Start
    */
+
+  const [checkDelete, setCheckDelete] = useState(false);
   const [searchText, setSearchText] = useState("");
   const handleSearch = (event) => {
     const value = event.target.value;
@@ -59,6 +61,7 @@ const AllFriends = () => {
   const { isLoading, data: peoples } = useGetFriendsQuery({
     email: databseUser?.email,
     searchText,
+    checkDelete,
     // page: page,
   });
   console.log("Data from RTK Query: ", peoples);
@@ -109,7 +112,7 @@ const AllFriends = () => {
           .then((data) => {
             if (data.deletedCount > 0) {
               successfullToast("Deleted Successfully");
-              setCheck(!check);
+              setCheckDelete(!checkDelete);
             }
           });
         //Delete End
@@ -122,9 +125,7 @@ const AllFriends = () => {
    * Remove Search Box Text start
    */
   const handleRemoveSearchText = () => {
-    console.log("Check cross");
     setSearchText("");
-    console.log("Search Text: ", searchText);
   };
   /**
    * Remove Search Box Text end
@@ -146,7 +147,7 @@ const AllFriends = () => {
       <h1 className="bg-orange-500 text-white w-full md:w-4/12 mx-auto text-center p-2 mb-5 rounded-lg font-bold">
         Your All Friend: {totalCount}
       </h1>
-      {totalCount > 0 ? (
+      {peoples.length > 0 ? (
         <div>
           {/* Main Work Start */}
 

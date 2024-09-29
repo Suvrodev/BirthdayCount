@@ -3,14 +3,27 @@ import Header from "../Pages/Shared/Header/Header";
 import { Outlet } from "react-router-dom";
 import Footer from "../Pages/Shared/Footer/Footer";
 import HeaderUpper from "../Pages/Shared/Header/HeaderUpper/HeaderUpper";
+import GoToTop from "../Pages/Shared/GoToTop/GoToTop";
+import DesktoHeader from "../Pages/Shared/Header/DesktoHeader/DesktoHeader";
+import MobileHeader from "../Pages/Shared/Header/MobileHeader/MobileHeader";
 
 const Main = () => {
   return (
     <div>
-      <HeaderUpper></HeaderUpper>
-      <Header></Header>
+      <div className="-z-30">
+        <HeaderUpper></HeaderUpper>
+      </div>
+      <div className="hidden md:block">
+        <DesktoHeader />
+      </div>
+      <div className="md:hidden">
+        <MobileHeader />
+      </div>
+
+      {/* <Header></Header> */}
       <Outlet></Outlet>
       {/* <Footer></Footer> */}
+      <GoToTop />
     </div>
   );
 };
