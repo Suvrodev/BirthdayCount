@@ -21,7 +21,7 @@ const Main = () => {
       </div>
 
       {/* <Header></Header> */}
-      <div>
+      <div className="mt-20 md:mt-0">
         <Outlet></Outlet>
       </div>
       {/* <Footer></Footer> */}

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import HeaderMode from "../../HeaderMode/HeaderMode";
 
 const MobileHeaderOption = ({ handleClick }) => {
@@ -70,10 +70,16 @@ const MobileHeaderOption = ({ handleClick }) => {
     </div>
   );
 
+  const navigate = useNavigate();
+  const handleGoLogin = () => {
+    handleClick(false);
+    navigate("/login");
+  };
+
   return (
     <div className="bg-slate-500 text-white flex flex-col gap-4 px-5 py-5">
       <div className="flex flex-col gap-4 font-bold w-full  ">{navItems}</div>
-      <div className="w-full flex flex-col gap-4 ">
+      <div className="w-full flex flex-col items-start gap-4 ">
         {databseUser ? (
           <div>
             <h1 className="font-bold -mt-4 mb-2">{databseUser?.name}</h1>
@@ -83,20 +89,23 @@ const MobileHeaderOption = ({ handleClick }) => {
                 alt=""
                 className="w-[40px] h-[40px] rounded-full"
               />
-              <button className="btn btn-primary text-white" onClick={Logout_}>
+              <button
+                className="btn btn-primary text-white"
+                onClick={() => {
+                  Logout_(), handleClick(false);
+                }}
+              >
                 Logout
               </button>
             </div>
           </div>
         ) : (
-          <Link to="/login">
-            <button
-              className=" btn btn-success bg-yellow-500 text-white "
-              onClick={() => handleGoogle()}
-            >
-              Login
-            </button>
-          </Link>
+          <button
+            className=" btn btn-success bg-yellow-500 text-white border-0 "
+            onClick={handleGoLogin}
+          >
+            Login
+          </button>
         )}
       </div>
     </div>
